@@ -1,0 +1,14 @@
+title: Sixte
+alternateName: sixte_demo
+abstract: This is a sixte demo datalab
+contactPoint.email: esin.gulbahar@fau.de
+creator.name: Esin Gulbahar
+version: 0.0.1
+description: > 
+  This datalab is used to build and run the simulation software sixte.
+  A metadata file is used to auto-complete metadata fields. 
+  This build uses a custom Dockerfile.
+  The environment.yml file is used to install python packages.
+distribution.license: None
+domain: https://data.esa.int/esado/domainSCI
+language: english

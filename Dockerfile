@@ -1,7 +1,8 @@
 # Use the official XMM SAS Datalab base image
-ARG REGISTRY=scidockreg.esac.esa.int:62510
-FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
+#ARG REGISTRY=scidockreg.esac.esa.int:62510
+#FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
 
+FROM scidockreg.esac.esa.int:62510/egulbaha_heasoft:v0.0.1-31
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -56,12 +57,13 @@ ENV LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}"
 
 
 COPY sixte-init-datalabs.sh /opt/datalab/init.d/
+RUN chmod +x /opt/datalab/init.d/sixte-init-datalabs.sh
 
 ENV PFILES="/media/home/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
 
 
-RUN mkdir /media/sixte-manual/
-COPY simulator_manual.pdf /media/sixte-manual/
+RUN mkdir /media/notebooks/
+COPY simulator_manual.pdf /media/notebooks/
 
 # Source the sixte-install.sh on container start
 RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc

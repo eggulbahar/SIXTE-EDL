@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo ">>> SIXTE INIT SCRIPT RAN <<<"
+
 # Append to .bashrc
 echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc

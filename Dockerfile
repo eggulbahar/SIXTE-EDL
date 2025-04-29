@@ -64,9 +64,9 @@ RUN mkdir /media/sixte-manual/
 COPY simulator_manual.pdf /media/sixte-manual/
 
 # Source the sixte-install.sh on container start
-#RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
-#RUN echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
-#RUN echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
+RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
+RUN echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
+RUN echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
 
 #RUN ${SIXTE_DIR}/bin/xifusim --help || echo "SIXTE installed, but cannot test without full config"
 

@@ -31,9 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Define environment directories
-ENV SIXTE_PREFIX=/opt/sixte
-ENV SIMPUT_PREFIX=${SIXTE_PREFIX}/simput
-ENV SIXTE_DIR=${SIXTE_PREFIX}/sixte
+ENV ENVIRONMENT=SIXTE_PREFIX=/opt/sixte SIMPUT_PREFIX=${SIXTE_PREFIX}/simput SIXTE_DIR=${SIXTE_PREFIX}/sixte
 
 # Clone and install SIMPUT
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/simput.git /tmp/simput && \
@@ -50,16 +48,13 @@ RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte &
     rm -rf /tmp/sixte
 
 # Set environment variables for use in notebooks
-ENV SIMPUT=${SIMPUT_PREFIX}
-ENV SIXTE=${SIXTE_DIR}
-ENV PATH="${SIXTE}/bin:${PATH}"
-ENV LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}"
+ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} SIXTE=${SIXTE_DIR} PATH="${SIXTE}/bin:${PATH}" LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" PFILES="/media/home/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
 
 
 COPY sixte-init-datalabs.sh /opt/datalab/init.d/
 RUN chmod +x /opt/datalab/init.d/sixte-init-datalabs.sh
 
-ENV PFILES="/media/home/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
+
 
 
 RUN mkdir /media/notebooks/

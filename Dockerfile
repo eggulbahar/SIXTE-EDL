@@ -50,8 +50,12 @@ RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte &
     rm -rf /tmp/sixte
 
 # Set environment variables 
-ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} SIXTE=${SIXTE_DIR} PATH="${SIXTE}/bin:${PATH}" LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" PFILES="$HOME/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
-
+ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} \
+    SIXTE=${SIXTE_DIR} \
+    PATH="${SIXTE}/bin:${PATH}" \ 
+    LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" \
+    PFILES="${HOME}/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
+#PFILES above is if using xmm sas as base image!
 
 COPY user-sixte-init-datalabs.sh /opt/datalab/init.d/
 RUN chmod +x /opt/datalab/init.d/user-sixte-init-datalabs.sh

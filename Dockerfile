@@ -31,7 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Define environment directories
-ENV ENVIRONMENT=SIXTE_PREFIX=/opt/sixte SIMPUT_PREFIX=${SIXTE_PREFIX}/simput SIXTE_DIR=${SIXTE_PREFIX}/sixte
+ENV SIXTE_PREFIX=/opt/sixte 
+ENV SIMPUT_PREFIX=${SIXTE_PREFIX}/simput 
+ENV SIXTE_DIR=${SIXTE_PREFIX}/sixte
 
 # Clone and install SIMPUT
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/simput.git /tmp/simput && \

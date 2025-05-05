@@ -1,12 +1,12 @@
 # Use the official XMM SAS Datalab base image
-#ARG REGISTRY=scidockreg.esac.esa.int:62510
-#FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
+ARG REGISTRY=scidockreg.esac.esa.int:62510
+FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
 
-FROM scidockreg.esac.esa.int:62510/egulbaha_heasoft:v0.0.1-31
+# Use the latest HeaSoft Datalab as base image
+#FROM scidockreg.esac.esa.int:62510/egulbaha_heasoft:v0.0.1-31
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Metadata
 LABEL description="SIXTE datalab"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -49,7 +49,7 @@ RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte &
     cmake --install /tmp/sixte/build && \
     rm -rf /tmp/sixte
 
-# Set environment variables for use in notebooks
+# Set environment variables 
 ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} SIXTE=${SIXTE_DIR} PATH="${SIXTE}/bin:${PATH}" LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" PFILES="/media/home/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
 
 

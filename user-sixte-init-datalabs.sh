@@ -28,7 +28,7 @@ locpfiles="$HOME/pfiles"
 syspfiles="$HEADAS/syspfiles"
 sixtepfiles="$SIXTE/share/sixte/pfiles"
 simputpfiles="$SIMPUT/share/simput/pfiles"
-PFILES="$locpfiles;$syspfiles;$sixtepfiles;$simputpfiles"
+PFILES="$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles"
 #export PFILES="$HOME/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
 #chmod u+w /media/home/pfiles
 

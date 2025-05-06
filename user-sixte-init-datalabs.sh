@@ -15,7 +15,7 @@ echo 'export locpfiles=$HOME/pfiles' >> ~/.bashrc
 echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.bashrc
 echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.bashrc
 echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.bashrc
-echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.bashrc
+echo 'export PFILES="$locpfiles;$syspfiles;$sixtepfiles;$simputpfiles"' >> ~/.bashrc
 
 #--------------------
 # Append to .profile

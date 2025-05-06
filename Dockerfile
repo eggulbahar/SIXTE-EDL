@@ -22,7 +22,9 @@ LABEL description="SIXTE datalab"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
+#------------------------------
 # Install system dependencies
+#------------------------------
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -41,45 +43,54 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+#---------------------------------
 # Define environment directories
+#---------------------------------
 ENV SIXTE_PREFIX=/opt/sixte 
 ENV SIMPUT_PREFIX=${SIXTE_PREFIX}/simput 
 ENV SIXTE_DIR=${SIXTE_PREFIX}/sixte
 
+#--------------------------
 # Clone and install SIMPUT
+#---------------------------
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/simput.git /tmp/simput && \
     cmake -S /tmp/simput -B /tmp/simput/build -DCMAKE_INSTALL_PREFIX=${SIMPUT_PREFIX} && \
     cmake --build /tmp/simput/build --parallel 4 && \
     cmake --install /tmp/simput/build && \
     rm -rf /tmp/simput
 
+#-------------------------
 # Clone and install SIXTE
+#-------------------------
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte && \
     cmake -S /tmp/sixte -B /tmp/sixte/build -DCMAKE_INSTALL_PREFIX=${SIXTE_DIR} -DSIMPUT_ROOT=${SIMPUT_PREFIX} && \
     cmake --build /tmp/sixte/build --parallel 4 && \
     cmake --install /tmp/sixte/build && \
     rm -rf /tmp/sixte
 
+#---------------------------
 # Set environment variables 
+#---------------------------
 ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} 
 ENV SIXTE=${SIXTE_DIR} 
 ENV PATH="${SIXTE}/bin:${PATH}" 
 ENV LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" 
-    #locpfiles="$HOME/pfiles" \
-    #syspfiles="$HEADAS/syspfiles" \
-    #sixtepfiles="$SIXTE/share/sixte/pfiles" \
-    #simputpfiles="$SIMPUT/share/simput/pfiles" \
-    #PFILES="$locpfiles;$syspfiles;$sixtepfiles;$simputpfiles"
 
+#------------------------------------------------------------------------
 # Copy the sixte init script to run at each start and make it executable
+#------------------------------------------------------------------------
 COPY user-sixte-init-datalabs.sh /opt/datalab/init.d/
 RUN chmod +x /opt/datalab/init.d/user-sixte-init-datalabs.sh
 
+#---------------------------------------------------------------------------------------------------
 # Below add any extra material to be shared with the datalab users (for now I only added the manual)
+#---------------------------------------------------------------------------------------------------
 RUN mkdir /media/notebooks/
 COPY simulator_manual.pdf /media/notebooks/
 
+#------------------------------------------------
 # Source the sixte-install.sh on container start
+#------------------------------------------------
 RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc \
     echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc \
     echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc

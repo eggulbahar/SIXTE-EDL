@@ -44,6 +44,7 @@ syspfiles="$HEADAS/syspfiles"
 sixtepfiles="$SIXTE/share/sixte/pfiles"
 simputpfiles="$SIMPUT/share/simput/pfiles"
 PFILES="$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles"
+export PFILES
 
 
 

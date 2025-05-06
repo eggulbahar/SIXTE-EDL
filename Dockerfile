@@ -42,9 +42,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Define environment directories
-ENV SIXTE_PREFIX=/opt/sixte \
-    SIMPUT_PREFIX=${SIXTE_PREFIX}/simput \
-    SIXTE_DIR=${SIXTE_PREFIX}/sixte
+ENV SIXTE_PREFIX=/opt/sixte 
+ENV SIMPUT_PREFIX=${SIXTE_PREFIX}/simput 
+ENV SIXTE_DIR=${SIXTE_PREFIX}/sixte
 
 # Clone and install SIMPUT
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/simput.git /tmp/simput && \
@@ -61,10 +61,10 @@ RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte &
     rm -rf /tmp/sixte
 
 # Set environment variables 
-ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} \
-    SIXTE=${SIXTE_DIR} \
-    PATH="${SIXTE}/bin:${PATH}" \ 
-    LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" 
+ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} 
+ENV SIXTE=${SIXTE_DIR} 
+ENV PATH="${SIXTE}/bin:${PATH}" 
+ENV LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" 
     #locpfiles="$HOME/pfiles" \
     #syspfiles="$HEADAS/syspfiles" \
     #sixtepfiles="$SIXTE/share/sixte/pfiles" \

@@ -9,6 +9,9 @@ description: >
   A metadata file is used to auto-complete metadata fields. 
   This build uses a custom Dockerfile.
   The environment.yml file is used to install python packages.
+  This research has made use of the SIXTE software package 
+  (Dauser et al., 2019) provided by ECAP/Remeis observatory 
+  (https://github.com/thdauser/sixte).
 distribution.license: None
 domain: https://data.esa.int/esado/domainSCI
 language: english

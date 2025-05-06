@@ -54,7 +54,7 @@ ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} \
     SIXTE=${SIXTE_DIR} \
     PATH="${SIXTE}/bin:${PATH}" \ 
     LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" \
-    PFILES="$HOME/pfiles;/opt/sixte/sixte/share/sixte/pfiles;/opt/sixte/simput/share/simput/pfiles;/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"
+    PFILES="$HOME/pfiles;/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles;/opt/sixte/sixte/share/sixte/pfiles;/opt/sixte/simput/share/simput/pfiles"
 #PFILES above is if using xmm sas as base image!
 
 COPY user-sixte-init-datalabs.sh /opt/datalab/init.d/

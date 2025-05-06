@@ -1,29 +1,44 @@
 #!/bin/bash
 
+#-----------------------------------------------------------------------
+# Test when launching container script to make sure this script has run
+#-----------------------------------------------------------------------
 echo ">>> SIXTE INIT SCRIPT RAN <<<"
 
+#-------------------
 # Append to .bashrc
+#-------------------
 echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
 echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
-#echo 'export PFILES="$HOME/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"' >> ~/.bashrc
-#echo 'chmod u+w /media/home/pfiles'>> ~/.bashrc
+echo 'export locpfiles=$HOME/pfiles' >> ~/.bashrc
+echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.bashrc
+echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.bashrc
+echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.bashrc
+echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.bashrc
 
+#--------------------
 # Append to .profile
+#--------------------
 echo 'export SIXTE=/opt/sixte/sixte' >> ~/.profile
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.profile
 echo '. $SIXTE/bin/sixte-install.sh' >> ~/.profile
-#echo 'export PFILES="$HOME/pfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles:/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles"' >> ~/.profile
-#echo 'chmod u+w /media/home/pfiles'>> ~/.profile
+echo 'export locpfiles=$HOME/pfiles' >> ~/.profile
+echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.profile
+echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.profile
+echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.profile
+echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.profile
 
-# Source it immediately for the current shell
+#-----------------------------------------------------
+# Source the install immediately for the current shell
+#-----------------------------------------------------
 export SIXTE=/opt/sixte/sixte
 export SIMPUT=/opt/sixte/simput
 . $SIXTE/bin/sixte-install.sh
 
-#--------------------------------
-#handle parameter files
-#---------------------------------
+#-----------------------------------------
+# Handle parameter files for current shell
+#-----------------------------------------
 locpfiles="$HOME/pfiles"
 syspfiles="$HEADAS/syspfiles"
 sixtepfiles="$SIXTE/share/sixte/pfiles"

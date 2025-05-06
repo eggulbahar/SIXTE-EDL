@@ -1,9 +1,20 @@
-# Use the official XMM SASv22.1 Datalab base image (Has js9)
+#---------------------------------------------------------------------------------------------------
+# This is a Dockerfile for sixte container on EDL. It does not build Heasoft on its own and 
+# is built on top of the already existing XMM-SASv22.1 image which contains Heasoft (alternative
+# available below). 
+# Latest update: 05.06.2025
+# By: E.G.G.
+# If you have any suggestions please contact: esin.gulbahar@fau.de
+#--------------------------------------------------------------------------------------------------
+
+# Use the official XMM SASv22.1 Datalab as base image (has js9)
 ARG REGISTRY=scidockreg.esac.esa.int:62510
 FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
 
+#---------------------------------------------------------------
 # Use the latest HeaSoft Datalab as base image (Not public)
 #FROM scidockreg.esac.esa.int:62510/egulbaha_heasoft:v0.0.1-31
+#---------------------------------------------------------------
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -60,7 +71,7 @@ ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} \
     #simputpfiles="$SIMPUT/share/simput/pfiles" \
     #PFILES="$locpfiles;$syspfiles;$sixtepfiles;$simputpfiles"
 
-# copy the sixte init script to run at each start and make it executable
+# Copy the sixte init script to run at each start and make it executable
 COPY user-sixte-init-datalabs.sh /opt/datalab/init.d/
 RUN chmod +x /opt/datalab/init.d/user-sixte-init-datalabs.sh
 
@@ -69,7 +80,6 @@ RUN mkdir /media/notebooks/
 COPY simulator_manual.pdf /media/notebooks/
 
 # Source the sixte-install.sh on container start
-#RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
-#RUN echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
-#RUN echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
-
+RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc \
+    echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc \
+    echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc

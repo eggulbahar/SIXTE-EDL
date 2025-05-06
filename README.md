@@ -1,6 +1,6 @@
 # SIXTE in ESA Datalabs
 
-This is a repository that contains the files needed to build the [SIXTE](https://www.sternwarte.uni-erlangen.de/sixte/) datalab, which is currently not public. All the files in the main branch are used to build a DOcker container in the context of the [ESA Datalabs](https://datalabs.esa.int/) infrastructure.
+This is a repository that contains the files needed to build the [SIXTE](https://www.sternwarte.uni-erlangen.de/sixte/) datalab, which is currently not public. All the files in the main branch are used to build a Docker container in the context of the [ESA Datalabs](https://datalabs.esa.int/) infrastructure.
 
 ## Structure
 * [Dockerfile](Dockerfile) -> custom Dockerfile that installs and builds SIXTE on top of the XMM-SASv22.1 datalab as base image.

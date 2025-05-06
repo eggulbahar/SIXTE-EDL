@@ -1,17 +1,17 @@
-title: Sixte
-alternateName: sixte_demo
-abstract: This is a sixte demo datalab
+title: SIXTE
+alternateName: sixte
+abstract: SIXTE software built within a JupyterLab environment.
 contactPoint.email: esin.gulbahar@fau.de
 creator.name: Esin Gulbahar
-version: 0.0.1
+version: 1.0.0
 description: > 
-  This datalab is used to build and run the simulation software sixte.
-  A metadata file is used to auto-complete metadata fields. 
-  This build uses a custom Dockerfile.
-  The environment.yml file is used to install python packages.
-  This research has made use of the SIXTE software package 
+  JupyterLab based datalab built to run the simulation software SIXTE.
+  The environment is built on top of the existing XMM-Newton SASv22.1 datalab,
+  therefor it contains Heasoft and SAS access.
+  This container has made use of the SIXTE software package 
   (Dauser et al., 2019) provided by ECAP/Remeis observatory 
   (https://github.com/thdauser/sixte).
-distribution.license: None
-domain: https://data.esa.int/esado/domainSCI
+distribution.license: Public
+domain: None
 language: english
+keywords: High-energy Astrophysics, X-rays, Simulations

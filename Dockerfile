@@ -1,8 +1,8 @@
-# Use the official XMM SAS Datalab base image
+# Use the official XMM SASv22.1 Datalab base image (Has js9)
 ARG REGISTRY=scidockreg.esac.esa.int:62510
 FROM ${REGISTRY}/datalabs/xmm-sas22.1.0:1.1.0
 
-# Use the latest HeaSoft Datalab as base image
+# Use the latest HeaSoft Datalab as base image (Not public)
 #FROM scidockreg.esac.esa.int:62510/egulbaha_heasoft:v0.0.1-31
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -31,9 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Define environment directories
-ENV SIXTE_PREFIX=/opt/sixte 
-ENV SIMPUT_PREFIX=${SIXTE_PREFIX}/simput 
-ENV SIXTE_DIR=${SIXTE_PREFIX}/sixte
+ENV SIXTE_PREFIX=/opt/sixte \
+    SIMPUT_PREFIX=${SIXTE_PREFIX}/simput \
+    SIXTE_DIR=${SIXTE_PREFIX}/sixte
 
 # Clone and install SIMPUT
 RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/simput.git /tmp/simput && \
@@ -53,21 +53,23 @@ RUN git clone http://www.sternwarte.uni-erlangen.de/git.public/sixt /tmp/sixte &
 ENV ENVIRONMENT=SIMPUT=${SIMPUT_PREFIX} \
     SIXTE=${SIXTE_DIR} \
     PATH="${SIXTE}/bin:${PATH}" \ 
-    LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" \
-    PFILES="$HOME/pfiles;/usr/local/heasoft-6.33.2/x86_64-pc-linux-gnu-libc2.35/syspfiles;/opt/sixte/sixte/share/sixte/pfiles;/opt/sixte/simput/share/simput/pfiles"
-#PFILES above is if using xmm sas as base image!
+    LD_LIBRARY_PATH="${SIMPUT}/lib:${SIXTE}/lib:${LD_LIBRARY_PATH}" 
+    #locpfiles="$HOME/pfiles" \
+    #syspfiles="$HEADAS/syspfiles" \
+    #sixtepfiles="$SIXTE/share/sixte/pfiles" \
+    #simputpfiles="$SIMPUT/share/simput/pfiles" \
+    #PFILES="$locpfiles;$syspfiles;$sixtepfiles;$simputpfiles"
 
+# copy the sixte init script to run at each start and make it executable
 COPY user-sixte-init-datalabs.sh /opt/datalab/init.d/
 RUN chmod +x /opt/datalab/init.d/user-sixte-init-datalabs.sh
 
-
+# Below add any extra material to be shared with the datalab users (for now I only added the manual)
 RUN mkdir /media/notebooks/
 COPY simulator_manual.pdf /media/notebooks/
 
 # Source the sixte-install.sh on container start
-RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
-RUN echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
-RUN echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
-
-#RUN ${SIXTE_DIR}/bin/xifusim --help || echo "SIXTE installed, but cannot test without full config"
+#RUN echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
+#RUN echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
+#RUN echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
 

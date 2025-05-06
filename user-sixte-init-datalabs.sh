@@ -11,11 +11,11 @@ echo ">>> SIXTE INIT SCRIPT RAN <<<"
 echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
 echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
-echo 'export locpfiles=$HOME/pfiles' >> ~/.bashrc
-echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.bashrc
-echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.bashrc
-echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.bashrc
-echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.bashrc
+#echo 'export locpfiles=$HOME/pfiles' >> ~/.bashrc
+#echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.bashrc
+#echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.bashrc
+#echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.bashrc
+#echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.bashrc
 
 #--------------------
 # Append to .profile
@@ -23,11 +23,11 @@ echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.bash
 echo 'export SIXTE=/opt/sixte/sixte' >> ~/.profile
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.profile
 echo '. $SIXTE/bin/sixte-install.sh' >> ~/.profile
-echo 'export locpfiles=$HOME/pfiles' >> ~/.profile
-echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.profile
-echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.profile
-echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.profile
-echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.profile
+#echo 'export locpfiles=$HOME/pfiles' >> ~/.profile
+#echo 'export syspfiles=$HEADAS/syspfiles' >> ~/.profile
+#echo 'export sixtepfiles=$SIXTE/share/sixte/pfiles' >> ~/.profile
+#echo 'export simputpfiles=$SIMPUT/share/simput/pfiles' >> ~/.profile
+#echo 'export PFILES=$locpfiles;$syspfiles:$sixtepfiles:$simputpfiles' >> ~/.profile
 
 #-----------------------------------------------------
 # Source the install immediately for the current shell

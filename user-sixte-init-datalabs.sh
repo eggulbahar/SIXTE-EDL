@@ -12,7 +12,7 @@ echo 'export SIXTE=/opt/sixte/sixte' >> ~/.bashrc
 echo 'export SIMPUT=/opt/sixte/simput' >> ~/.bashrc
 echo '. $SIXTE/bin/sixte-install.sh' >> ~/.bashrc
 echo 'export locpfiles=$HOME/pfiles' >> ~/.bashrc
-echo "export PFILES=\"$HOME/pfiles;$HEADAS/syspfiles:$SIXTE/share/sixte/pfiles:$SIMPUT/share/simput/pfiles\"" >> ~/.bashrc
+echo "export PFILES=\"$HOME/pfiles;$HEADAS/syspfiles:/opt/sixte/sixte/share/sixte/pfiles:/opt/sixte/simput/share/simput/pfiles\"" >> ~/.bashrc
 
 #--------------------
 # Append to .profile

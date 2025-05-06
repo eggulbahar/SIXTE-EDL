@@ -1,5 +1,5 @@
 # SIXTE in ESA Datalabs
-***
+
 This is a repository that contains the files needed to build the [SIXTE](https://www.sternwarte.uni-erlangen.de/sixte/) datalab, which is currently not public. All the files in the main branch are used to build a DOcker container in the context of the [ESA Datalabs](https://datalabs.esa.int/) infrastructure.
 
 ## Structure
@@ -14,4 +14,5 @@ If you use results obtained with SIXTE in a publication, please cite as: “This
 
 ***
 *Author: Esin G. Gulbahar*
+
 *Last Updated: 06/05/2025*

@@ -88,6 +88,49 @@ RUN chmod +x /opt/datalab/init.d/user-sixte-init-datalabs.sh
 RUN mkdir /media/notebooks/
 COPY simulator_manual.pdf /media/notebooks/
 
+#--------------------------------------------------------------------------------------
+# Copy the instrument tarballs to temporary loaction and then extract into correct path
+#--------------------------------------------------------------------------------------
+# Athena WFI
+COPY instruments/instruments_athena-wfi-1.11.1.tar.gz /tmp/instruments/
+RUN for f in /tmp/instruments/instruments_athena-wfi-1.11.1.tar.gz; do \
+        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+        tar --strip-components=2 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
+    done && \
+    rm -rf /tmp/instruments
+
+# Athena X-IFU
+COPY instruments/instruments_athena-xifu-1.9.1.tar.gz /tmp/instruments/
+RUN for f in /tmp/instruments/instruments_athena-xifu-1.9.1.tar.gz; do \
+        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+        tar --strip-components=2 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
+    done && \
+    rm -rf /tmp/instruments
+
+# AXIS
+COPY instruments/instruments_axis-3.1.0.tar.gz /tmp/instruments/
+RUN for f in /tmp/instruments/instruments_axis-3.1.0.tar.gz; do \
+        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+        tar --strip-components=2 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
+    done && \
+    rm -rf /tmp/instruments
+
+# SRG
+COPY instruments/instruments_srg-1.9.2.tar.gz /tmp/instruments/
+RUN for f in /tmp/instruments/instruments_srg-1.9.2.tar.gz; do \
+        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+        tar --strip-components=2 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
+    done && \
+    rm -rf /tmp/instruments
+
+# XRISM
+COPY instruments/instruments_xrism-0.1.0.tar.gz /tmp/instruments/
+RUN for f in /tmp/instruments/instruments_xrism-0.1.0.tar.gz; do \
+        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+        tar --strip-components=2 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
+    done && \
+    rm -rf /tmp/instruments
+
 #------------------------------------------------
 # Source the sixte-install.sh on container start
 #------------------------------------------------

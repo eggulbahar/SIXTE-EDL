@@ -2,7 +2,7 @@
 # This is a Dockerfile for sixte container on EDL. It does not build Heasoft on its own and 
 # is built on top of the already existing XMM-SASv22.1 image which contains Heasoft (alternative
 # available below). 
-# Latest update: 05.06.2025
+# Latest update: 23.05.2025
 # By: E.G.G.
 # If you have any suggestions please contact: esin.gulbahar@fau.de
 #--------------------------------------------------------------------------------------------------
@@ -123,7 +123,6 @@ RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instrumen
     mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
     tar --strip-components=3 -xzf /tmp/instruments_xrism-1.2.0.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
     rm -f /tmp/instruments_xrism-1.2.0.tar.gz
-
 
 
 #------------------------------------------------

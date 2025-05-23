@@ -92,44 +92,39 @@ COPY simulator_manual.pdf /media/notebooks/
 # Copy the instrument tarballs to temporary loaction and then extract into correct path
 #--------------------------------------------------------------------------------------
 # Athena WFI
-COPY instruments/instruments_athena-wfi-1.11.1.tar.gz /tmp/instruments/
-RUN for f in /tmp/instruments/instruments_athena-wfi-1.11.1.tar.gz; do \
-        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
-        tar --strip-components=3 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
-    done && \
-    rm -rf /tmp/instruments
+RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instruments/instruments_athena-wfi-1.11.1.tar.gz -O /tmp/instruments_athena-wfi-1.11.1.tar.gz && \
+    mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+    tar --strip-components=3 -xzf /tmp/instruments_athena-wfi-1.11.1.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
+    rm -f /tmp/instruments_athena-wfi-1.11.1.tar.gz
+
 
 # Athena X-IFU
-COPY instruments/instruments_athena-xifu-1.9.1.tar.gz /tmp/instruments/
-RUN for f in /tmp/instruments/instruments_athena-xifu-1.9.1.tar.gz; do \
-        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
-        tar --strip-components=3 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
-    done && \
-    rm -rf /tmp/instruments
+RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instruments/instruments_athena-xifu-1.9.1.tar.gz -O /tmp/instruments_athena-xifu-1.9.1.tar.gz && \
+    mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+    tar --strip-components=3 -xzf /tmp/instruments_athena-xifu-1.9.1.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
+    rm -f /tmp/instruments_athena-xifu-1.9.1.tar.gz
 
 # AXIS
-COPY instruments/instruments_axis-3.1.0.tar.gz /tmp/instruments/
-RUN for f in /tmp/instruments/instruments_axis-3.1.0.tar.gz; do \
-        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
-        tar --strip-components=3 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
-    done && \
-    rm -rf /tmp/instruments
+RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instruments/instruments_axis-3.1.1.tar.gz -O /tmp/instruments_axis-3.1.1.tar.gz && \
+    mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+    tar --strip-components=3 -xzf /tmp/instruments_axis-3.1.1.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
+    rm -f /tmp/instruments_axis-3.1.1.tar.gz
+
 
 # SRG
-COPY instruments/instruments_srg-1.9.2.tar.gz /tmp/instruments/
-RUN for f in /tmp/instruments/instruments_srg-1.9.2.tar.gz; do \
-        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
-        tar --strip-components=3 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
-    done && \
-    rm -rf /tmp/instruments
+RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instruments/instruments_srg-1.9.2.tar.gz -O /tmp/instruments_srg-1.9.2.tar.gz && \
+    mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+    tar --strip-components=3 -xzf /tmp/instruments_srg-1.9.2.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
+    rm -f /tmp/instruments_srg-1.9.2.tar.gz
+
 
 # XRISM
-COPY instruments/instruments_xrism-0.1.0.tar.gz /tmp/instruments/
-RUN for f in /tmp/instruments/instruments_xrism-0.1.0.tar.gz; do \
-        mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
-        tar --strip-components=3 -xzf "$f" -C /opt/sixte/sixte/share/sixte/instruments; \
-    done && \
-    rm -rf /tmp/instruments
+RUN wget https://www.sternwarte.uni-erlangen.de/~sixte/downloads/sixte/instruments/instruments_xrism-1.2.0.tar.gz -O /tmp/instruments_xrism-1.2.0.tar.gz && \
+    mkdir -p /opt/sixte/sixte/share/sixte/instruments && \
+    tar --strip-components=3 -xzf /tmp/instruments_xrism-1.2.0.tar.gz -C /opt/sixte/sixte/share/sixte/instruments && \
+    rm -f /tmp/instruments_xrism-1.2.0.tar.gz
+
+
 
 #------------------------------------------------
 # Source the sixte-install.sh on container start
